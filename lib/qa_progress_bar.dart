@@ -69,12 +69,12 @@ class _QandAProgressBarState extends State<QandAProgressBar> {
             alignment: Alignment.centerLeft,
             children: [
               Container(
-                height: 22,
+                height: 5,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      theme.colorScheme.primary.withOpacity(0.12),
-                      theme.colorScheme.primary.withOpacity(0.08),
+                      theme.colorScheme.primary.withValues(alpha: 0.12),
+                      theme.colorScheme.primary.withValues(alpha: 0.08),
                     ],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
@@ -82,7 +82,7 @@ class _QandAProgressBarState extends State<QandAProgressBar> {
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.06),
+                      color: Colors.black.withValues(alpha: 0.06),
                       blurRadius: 6,
                       offset: const Offset(0, 2),
                     ),
@@ -92,7 +92,7 @@ class _QandAProgressBarState extends State<QandAProgressBar> {
               FractionallySizedBox(
                 widthFactor: value,
                 child: Container(
-                  height: 22,
+                  height: 5,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
@@ -105,31 +105,42 @@ class _QandAProgressBarState extends State<QandAProgressBar> {
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
-                        color: theme.colorScheme.primary.withOpacity(0.18),
+                        color: theme.colorScheme.primary.withValues(
+                          alpha: 0.18,
+                        ),
                         blurRadius: 8,
                         offset: const Offset(0, 2),
+                      ),
+                      // Glowing effect
+                      BoxShadow(
+                        color: theme.colorScheme.primary.withValues(
+                          alpha: 0.45,
+                        ),
+                        blurRadius: 18,
+                        spreadRadius: 2,
+                        offset: const Offset(0, 0),
                       ),
                     ],
                   ),
                 ),
               ),
-              Positioned.fill(
-                child: Center(
-                  child: Text(
-                    "${(value * 100).round()}% completed",
-                    style: theme.textTheme.labelLarge?.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      shadows: [
-                        Shadow(
-                          color: Colors.black.withOpacity(0.12),
-                          blurRadius: 2,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              // Positioned.fill(
+              //   child: Center(
+              //     child: Text(
+              //       "${(value * 100).round()}% completed",
+              //       style: theme.textTheme.labelLarge?.copyWith(
+              //         color: Colors.white,
+              //         fontWeight: FontWeight.bold,
+              //         shadows: [
+              //           Shadow(
+              //             color: Colors.black.withOpacity(0.12),
+              //             blurRadius: 2,
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           );
         },
