@@ -59,24 +59,44 @@ class _QandAProgressBarState extends State<QandAProgressBar> {
     int percent = (totalProgress * 100).round();
 
     return Card(
-      elevation: 8,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      elevation: 0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       margin: const EdgeInsets.symmetric(vertical: 18, horizontal: 10),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 24),
+        padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 14),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "Progress",
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: theme.colorScheme.primary,
-                    letterSpacing: 0.2,
-                  ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "Group ${widget.currentGroup} of ${widget.totalGroups}",
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.primary,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const SizedBox(width: 6),
+                    Text(
+                      "•",
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.primary,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const SizedBox(width: 6),
+                    Text(
+                      "Question ${widget.currentQuestion} of ${widget.totalQuestions}",
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.primary,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
                 TweenAnimationBuilder<int>(
                   tween: IntTween(begin: _oldPercent, end: percent),
@@ -94,7 +114,7 @@ class _QandAProgressBarState extends State<QandAProgressBar> {
                 ),
               ],
             ),
-            const SizedBox(height: 18),
+            const SizedBox(height: 12),
             TweenAnimationBuilder<double>(
               tween: Tween<double>(begin: _oldProgress, end: totalProgress),
               duration: const Duration(milliseconds: 700),
@@ -172,25 +192,6 @@ class _QandAProgressBarState extends State<QandAProgressBar> {
               },
             ),
             const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Group ${widget.currentGroup} of ${widget.totalGroups}",
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.colorScheme.primary,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  "Question ${widget.currentQuestion} of ${widget.totalQuestions}",
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.colorScheme.secondary,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
           ],
         ),
       ),
