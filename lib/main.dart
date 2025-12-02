@@ -74,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            SizedBox(height: 32),
             QandAProgressBar(
               currentGroup: _currentGroup,
               totalGroups: _totalGroups,
