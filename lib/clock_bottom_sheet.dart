@@ -86,10 +86,15 @@ class ClockController extends GetxController {
 
   /// ---------------- PROGRESS ----------------
   double? get progress {
-    if (mode.value != ClockMode.timer) return null;
-    if (totalSeconds.value == 0) return 0;
-
-    return remainingSeconds.value / totalSeconds.value;
+    if (mode.value == ClockMode.timer) {
+      // Timer: smooth progress based on remaining seconds
+      if (totalSeconds.value == 0) return 0;
+      return remainingSeconds.value / totalSeconds.value;
+    } else {
+      // Stopwatch: progress for the current minute only
+      final secondsThisMinute = elapsedSeconds.value % 60;
+      return secondsThisMinute / 60;
+    }
   }
 
   @override
