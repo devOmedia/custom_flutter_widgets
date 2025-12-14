@@ -20,7 +20,6 @@ class QandAProgressBar extends StatefulWidget {
 
 class _QandAProgressBarState extends State<QandAProgressBar> {
   double _oldProgress = 0.0;
-  int _oldPercent = 0;
 
   @override
   void didUpdateWidget(covariant QandAProgressBar oldWidget) {
@@ -32,7 +31,6 @@ class _QandAProgressBarState extends State<QandAProgressBar> {
       oldWidget.currentQuestion,
       oldWidget.totalQuestions,
     );
-    _oldPercent = (_oldProgress * 100).round();
   }
 
   double _calculateProgress(
@@ -56,7 +54,6 @@ class _QandAProgressBarState extends State<QandAProgressBar> {
       widget.currentQuestion,
       widget.totalQuestions,
     );
-    int percent = (totalProgress * 100).round();
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import 'qa_progress_bar.dart';
+import 'clock_bottom_sheet.dart';
 import 'theme/icon_dark_theme.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: IconDarkTheme.androidDarkTheme,
       darkTheme: IconDarkTheme.androidDarkTheme,
@@ -73,18 +74,10 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(height: 32),
-            QandAProgressBar(
-              currentGroup: _currentGroup,
-              totalGroups: _totalGroups,
-              currentQuestion: _currentQuestion,
-              totalQuestions: _totalQuestions,
-            ),
-          ],
+          children: [SizedBox(height: 32)],
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: _incrementCounter,
+          onPressed: () => showClockBottomSheet(context),
           tooltip: 'Increment',
           child: const Icon(Icons.add),
         ),
