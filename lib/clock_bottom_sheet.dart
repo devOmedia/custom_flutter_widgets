@@ -192,14 +192,36 @@ void showClockBottomSheet(BuildContext context) {
               const SizedBox(height: 24),
 
               /// START / STOP
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: controller.isRunning.value
-                      ? controller.stop
-                      : controller.start,
-                  child: Text(controller.isRunning.value ? 'Stop' : 'Start'),
-                ),
+              /// ---------------- START / STOP + RESET ----------------
+              Row(
+                children: [
+                  // Start / Stop button
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: controller.isRunning.value
+                          ? controller.stop
+                          : controller.start,
+                      child: Text(
+                        controller.isRunning.value ? 'Stop' : 'Start',
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(width: 16),
+
+                  // Reset button (only visible when running)
+                  if (controller.isRunning.value)
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: controller.reset,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              Colors.grey, // optional: different color
+                        ),
+                        child: const Text('Reset'),
+                      ),
+                    ),
+                ],
               ),
             ],
           ),
